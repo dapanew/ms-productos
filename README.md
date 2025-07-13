@@ -1,4 +1,4 @@
-# ms-productos ->  Microservicio Para la Gestion del Producto, Desarrollado en Spring Boot 
+# ms-productos  Microservicio Para la Gestion del Producto, Desarrollado en Spring Boot 
 
 ## Descripción
 Esta solución consiste en dos microservicios independientes:
@@ -35,7 +35,7 @@ mvn clean compile
 
 # Generar empaquetado (JAR)
 mvn clean package
-
+```
 ## 4. Desarrollado con Arquitectura Hexagonal
 
 - **Dominio**:
