@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  mysql-db:
+    image: mysql:8.0
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: admind
+      MYSQL_DATABASE: linktic_db
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - reto
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 10s
+      retries: 5
+
+  ms-productos:
+    image: dapanew/ms-productos:1
+    container_name: ms-productos-01
+    environment:
+      - SPRING_APPLICATION_NAME=ms-productos
+      - SERVER_PORT=8081
+      - DATABASE_URL=jdbc:mysql://mysql-db:3306/linktic_db
+      - DATABASE_USERNAME=root
+      - DATABASE_PASSWORD=admind
+      - SPRING_JPA_DATABASE-PLATFORM=org.hibernate.dialect.MySQLDialect
+      - SPRING_JPA_SHOW-SQL=true
+      - SPRINGDOC_API-DOCS_PATH=/api-docs
+      - SPRINGDOC_SWAGGER-UI_PATH=/swagger-ui.html
+      - LOGGING_LEVEL_ORG_SPRINGFRAMEWORK=INFO
+      - LOGGING_LEVEL_COM_LITE=WARN
+      - LOGGING_LOGSTASH_ENABLED=true
+      - LOGSTASH_SERVER=logstash:5000
+      - JAVA_OPTS=-Xms200m -Xmx256m
+    ports:
+      - "9091:8081"
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+    networks:
+      - reto
+      - elk_elk
+    restart: always
+
+networks:
+  reto:
+    external: true
+  elk_elk:
+    external: true
+
+volumes:
+  mysql_data:

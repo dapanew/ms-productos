@@ -1,0 +1,383 @@
+{
+	"info": {
+		"_postman_id": "ab48885c-8d29-47a7-b35d-77dc6d6a8bcc",
+		"name": "MS Productos - Pruebas",
+		"description": "Colección para probar el microservicio de gestión de productos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42992711"
+	},
+	"item": [
+		{
+			"name": "Configuración",
+			"item": [
+				{
+					"name": "Set Variables",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"base_url\", \"http://localhost:8081/api/productos\")",
+									"pm.collectionVariables.set(\"producto_existente\", 1)",
+									"pm.collectionVariables.set(\"producto_inexistente\", 999)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}",
+							"host": [
+								"{{base_url}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Health Check",
+			"item": [
+				{
+					"name": "Verificar estado del servicio",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								""
+							]
+						},
+						"description": "este punta al raiz, para validar que ei micro esta arriba."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CRUD Productos",
+			"item": [
+				{
+					"name": "Crear producto (éxito)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Laptop HP\",\n    \"precio\": 1500.99\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/crearProducto",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"crearProducto"
+							]
+						},
+						"description": "Esta operacion de tipo POST guardar, se utiliza para crear un nuevo producto en la base de datos."
+					},
+					"response": []
+				},
+				{
+					"name": "Crear producto (sin nombre)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"precio\": 1500.99\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/crearProducto",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"crearProducto"
+							]
+						},
+						"description": "Esta operacion de tipo POST guardar, es una VALIDACION que no permite crear un producto sin el campo nombre:(\"nombre\":\"Laptop HP\"). para lo cual en la respuesta indica que (El nombre del producto es obligatorio)."
+					},
+					"response": []
+				},
+				{
+					"name": "Crear producto (precio negativo)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Producto Inválido\",\n    \"precio\": -10\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/crearProducto",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"crearProducto"
+							]
+						},
+						"description": "Esta operacion de tipo POST guardar, es una VALIDACION que no permite crear un producto con precio NEGATIVO . para lo cual en la respuesta indica que (El precio debe ser mayor que 0)."
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener todos los productos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/todos",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"todos"
+							]
+						},
+						"description": "Esta operacion de tipo GET-Consultar, TRAE todos los productos existentes en la tabla de productos"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener producto por ID (existente)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/{{producto_existente}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{producto_existente}}"
+							]
+						},
+						"description": "Esta operacion de tipo GET-Consultar, TRAE UN SOLO Producto que se pase por idProducto"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener producto por ID (inexistente)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/{{producto_inexistente}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{producto_inexistente}}"
+							]
+						},
+						"description": "Esta operacion de tipo GET consultar, es una VALIDACION que indica cuando el producto a buscar es inexistente . para lo cual en la respuesta indica que (Producto no encontrado con id: )."
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar producto (éxito)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Laptop HP Actualizada\",\n    \"precio\": 1600.50\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/{{producto_existente}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{producto_existente}}"
+							]
+						},
+						"description": "Esta operacion de tipo PUT-Actualizar, modifica el producto por idproducto, se debe pasar en el cuerpo os valores a modificar."
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar producto (inexistente)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Producto Inexistente\",\n    \"precio\": 100.00\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/{{producto_inexistente}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{producto_inexistente}}"
+							]
+						},
+						"description": "Esta operacion de tipo PUT Actualizar, es una VALIDACION que indica cuando el producto a buscar es inexistente . para lo cual en la respuesta indica que (Producto no encontrado con id: )."
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar producto (éxito)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/{{producto_existente}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{producto_existente}}"
+							]
+						},
+						"description": "Esta operacion de tipo DELETE Eliminacion, por idproducto"
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar producto (inexistente)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/{{producto_inexistente}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{producto_inexistente}}"
+							]
+						},
+						"description": "Esta operacion de tipo DELETE Eliminacion, es una VALIDACION para cuando el producto no existe"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"console.log('Setting up test environment');"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"",
+					"// Tests para health check",
+					"pm.test(\"Health check should return 200\", function () {",
+					"    if (pm.request.url.toString().endsWith('/')) {",
+					"        pm.response.to.have.status(200);",
+					"        pm.expect(pm.response.text()).to.include('microservicio productos activo');",
+					"    }",
+					"});",
+					"",
+					"// Tests para creación exitosa",
+					"pm.test(\"For successful product creation\", function () {",
+					"    if (pm.response.code === 201 && pm.request.method === 'POST') {",
+					"        pm.response.to.have.status(201);",
+					"        const jsonData = pm.response.json();",
+					"        pm.expect(jsonData).to.have.property('id');",
+					"        pm.expect(jsonData).to.have.property('nombre');",
+					"        pm.expect(jsonData).to.have.property('precio');",
+					"        pm.collectionVariables.set(\"producto_existente\", jsonData.id);",
+					"    }",
+					"});",
+					"",
+					"// Tests para validaciones fallidas",
+					"pm.test(\"For validation errors\", function () {",
+					"    if (pm.response.code === 400 && pm.request.method === 'POST') {",
+					"        const jsonData = pm.response.json();",
+					"        pm.expect(jsonData).to.have.property('timestamp');",
+					"        pm.expect(jsonData).to.have.property('errors');",
+					"    }",
+					"});",
+					"",
+					"// Tests para producto no encontrado",
+					"pm.test(\"For product not found\", function () {",
+					"    if (pm.response.code === 404) {",
+					"        const jsonData = pm.response.json();",
+					"        pm.expect(jsonData).to.have.property('message');",
+					"        pm.expect(jsonData.message).to.include('no encontrado');",
+					"    }",
+					"});",
+					"",
+					"// Tests para consulta de todos los productos",
+					"pm.test(\"For get all products\", function () {",
+					"    if (pm.response.code === 200 && pm.request.url.toString().includes('todos')) {",
+					"        pm.expect(pm.response.json()).to.be.an('array');",
+					"    }",
+					"});",
+					"",
+					"// Tests para actualización exitosa",
+					"pm.test(\"For successful update\", function () {",
+					"    if (pm.response.code === 200 && pm.request.method === 'PUT') {",
+					"        const jsonData = pm.response.json();",
+					"        pm.expect(jsonData.nombre).to.eql(JSON.parse(pm.request.body.toString()).nombre);",
+					"    }",
+					"});"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8081/api/productos"
+		},
+		{
+			"key": "producto_existente",
+			"value": "1"
+		},
+		{
+			"key": "producto_inexistente",
+			"value": "999"
+		}
+	]
+}
