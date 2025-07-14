@@ -141,14 +141,17 @@ volumes:
 ```
 ##  8. Diagrama de  Arquitectura DRAWIO: 
 - ** En  en la carpeta arquitectura se encuentra el archivo aqruitectura_microservicios.drawio, que tiene la arquitectura propuesta para los microservicios con diferentes Hojas que explican la arquitectura del desarrollo, este se debe importar  con DRAWIO:  https://www.drawio.com/.
-- Relacion de diagramas de arquitectura
+# Diagramas de Arquitectura
+
+A continuación se detallan los diagramas de arquitectura disponibles para este proyecto:
+
 | Nombre                     | Descripción                                                                 |
-|--------------------------- |-----------------------------------------------------------------------------|
-| **Arquitectura General**   | Describe la arq de los 2 microservicios en su construcion.                  |
-| **Arq-Feing**              | Describe la comunicacion de los 2 microservicios                            |
-| **Arq_Profile**            |   Uso de recursos   memoria y CPU.                                          |
-| **Arq_Docker_local**       | Se describe la estrategia para la generacion de las imagenes Docker         |
-| **Arq_imp_CI-CD-PIPELINE** | Estrategia de generacion de Pipeline despliegue en nube                     |
+|----------------------------|-----------------------------------------------------------------------------|
+| **Arquitectura General**   | Describe la arquitectura de los 2 microservicios en su construcción.        |
+| **Arq-Feing**              | Describe la comunicación entre los 2 microservicios.                        |
+| **Arq_Profile**            | Muestra el uso de recursos (memoria y CPU) del sistema.                     |
+| **Arq_Docker_local**       | Describe la estrategia para la generación de las imágenes Docker.           |
+| **Arq_imp_CI-CD-PIPELINE** | Contiene la estrategia de generación de Pipeline para despliegue en la nube.|
 
  ### Comandos para construir y ejecutar genericos. en el proyecto esta el archivo README.md con la informacion.
 
