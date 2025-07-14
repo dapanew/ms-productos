@@ -140,7 +140,15 @@ volumes:
   mysql_data:
 ```
 ##  8. Diagrama de  Arquitectura DRAWIO: 
-- ** En  en la carpeta diagramaArquitectura se encuentra el archivo arq_micro_conversion_divisa.drawio, que tiene la arquitectura propuesta para el microservicio, este se debe importar  con DRAWIO:  https://www.drawio.com/
+- ** En  en la carpeta arquitectura se encuentra el archivo aqruitectura_microservicios.drawio, que tiene la arquitectura propuesta para los microservicios con diferentes Hojas que explican la arquitectura del desarrollo, este se debe importar  con DRAWIO:  https://www.drawio.com/.
+- 
+  | Nombre               | Descripción                                                                 |
+|---------------------------|-----------------------------------------------------------------------------|
+| **Arquitectura General**  | Describe la arq de los 2 microservicios en su construcion.                  |
+| **Arq-Feing**             | Describe la comunicacion de los 2 microservicios                            |
+| **Arq_Profile**           |   Uso de recursos   memoria y CPU.                                          |
+| **Arq_Docker_local**       | Se describe la estrategia para la generacion de las imagenes Docker        |
+| **Arq_imp_CI-CD-PIPELINE** | Estrategia de generacion de Pipeline despliegue en nube                    |
  ### Comandos para construir y ejecutar genericos. en el proyecto esta el archivo README.md con la informacion.
 
 ```bash
@@ -156,8 +164,8 @@ docker ps
 # Acceder a swagger
 # http://localhost:8081/swagger-ui.html
 ```
-## Nota: Para efectos de facilitar las pruebas se dejo quemado en el archivo de properties, el valor de las variables. 
-- **  Por buena practicas las imágenes deberían quedar agnósticas lo que nos permitiria desplegar en diferentes nubes
+### Nota: Para efectos de facilitar las pruebas se dejo quemado en el archivo de properties, el valor de las variables. 
+- ** Por buena practicas las imágenes deberían quedar agnósticas lo que nos permitiria desplegar en diferentes nubes
 - 
 - **Herramientas de profile recomendadas**:
   - Java Mission Control: https://www.oracle.com/java/technologies/jdk-mission-control.html
