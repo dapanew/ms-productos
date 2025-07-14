@@ -139,6 +139,8 @@ networks:
 volumes:
   mysql_data:
 ```
+##  8. Diagrama de  Arquitectura DRAWIO: 
+- ** En  en la carpeta diagramaArquitectura se encuentra el archivo arq_micro_conversion_divisa.drawio, que tiene la arquitectura propuesta para el microservicio, este se debe importar  con DRAWIO:  https://www.drawio.com/
  ### Comandos para construir y ejecutar genericos. en el proyecto esta el archivo README.md con la informacion.
 
 ```bash
@@ -154,6 +156,9 @@ docker ps
 # Acceder a swagger
 # http://localhost:8081/swagger-ui.html
 ```
+## Nota: Para efectos de facilitar las pruebas se dejo quemado en el archivo de properties, el valor de las variables. 
+- **  Por buena practicas las imágenes deberían quedar agnósticas lo que nos permitiria desplegar en diferentes nubes
+- 
 - **Herramientas de profile recomendadas**:
   - Java Mission Control: https://www.oracle.com/java/technologies/jdk-mission-control.html
   - VisualVM: https://visualvm.github.io/
