@@ -141,14 +141,15 @@ volumes:
 ```
 ##  8. Diagrama de  Arquitectura DRAWIO: 
 - ** En  en la carpeta arquitectura se encuentra el archivo aqruitectura_microservicios.drawio, que tiene la arquitectura propuesta para los microservicios con diferentes Hojas que explican la arquitectura del desarrollo, este se debe importar  con DRAWIO:  https://www.drawio.com/.
-- 
-  | Nombre               | Descripción                                                                 |
-|---------------------------|-----------------------------------------------------------------------------|
-| **Arquitectura General**  | Describe la arq de los 2 microservicios en su construcion.                  |
-| **Arq-Feing**             | Describe la comunicacion de los 2 microservicios                            |
-| **Arq_Profile**           |   Uso de recursos   memoria y CPU.                                          |
-| **Arq_Docker_local**       | Se describe la estrategia para la generacion de las imagenes Docker        |
-| **Arq_imp_CI-CD-PIPELINE** | Estrategia de generacion de Pipeline despliegue en nube                    |
+- Relacion de diagramas de arquitectura
+| Nombre                     | Descripción                                                                 |
+|--------------------------- |-----------------------------------------------------------------------------|
+| **Arquitectura General**   | Describe la arq de los 2 microservicios en su construcion.                  |
+| **Arq-Feing**              | Describe la comunicacion de los 2 microservicios                            |
+| **Arq_Profile**            |   Uso de recursos   memoria y CPU.                                          |
+| **Arq_Docker_local**       | Se describe la estrategia para la generacion de las imagenes Docker         |
+| **Arq_imp_CI-CD-PIPELINE** | Estrategia de generacion de Pipeline despliegue en nube                     |
+
  ### Comandos para construir y ejecutar genericos. en el proyecto esta el archivo README.md con la informacion.
 
 ```bash
